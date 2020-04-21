@@ -1,0 +1,9 @@
+Особенности работы с моей версией docker-compose:
+
+1. Исходники boxfuze скачиваются заранее в текущую директорию с docker-compose
+2. При сборке проекта сначала запускается билд и запуск контейнера dev для компиляции приложения, только после этого собирается
+и запускается Прод:
+docker-compose build boxfuzedev
+docker-compose up -d boxfuzebuild
+docker-compose build boxfuze
+docker-compose up -d boxfuze
