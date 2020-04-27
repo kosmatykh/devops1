@@ -1,0 +1,38 @@
+---
+- name: install boxfuse
+  hosts: host2
+  become: yes
+
+  tasks:
+  - name: Ensure tomcat package is present
+    apt:
+      name: tomcat8
+      state: present
+
+  - name: Ensure maven package is present
+    apt:
+      name: maven
+      state: present
+
+  - name: Clone git repo
+    git:
+      repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
+      dest: /root/boxfuse
+      clone: yes
+
+  - name: Build application
+    shell: mvn package
+    args:
+      chdir: /root/boxfuse
+
+  - name: Copy application to webapps
+    copy:
+      src: /root/boxfuse/target/hello-1.0.war
+      dest: /usr/local/tomcat/webapps/
+      remote_src: yes
+
+  - name: Ensure tomcat is running
+    service:
+      name: tomcat8
+      state: started
+
