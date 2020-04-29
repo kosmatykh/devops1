@@ -28,7 +28,7 @@
   - name: Copy application to webapps
     copy:
       src: /root/boxfuse/target/hello-1.0.war
-      dest: /usr/local/tomcat/webapps/
+      dest: /var/lib/tomcat8/webapps/
       remote_src: yes
 
   - name: Ensure tomcat is running
