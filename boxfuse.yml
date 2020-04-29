@@ -1,14 +1,9 @@
 ---
-- name: install boxfuse
-  hosts: host2
+- name: build boxfuse
+  hosts: build
   become: yes
-
+  
   tasks:
-  - name: Ensure tomcat package is present
-    apt:
-      name: tomcat8
-      state: present
-
   - name: Ensure maven package is present
     apt:
       name: maven
@@ -25,6 +20,16 @@
     args:
       chdir: /root/boxfuse
 
+- name: start boxfuse
+  hosts: prod
+  become: yes
+
+  tasks:
+  - name: Ensure tomcat package is present
+    apt:
+      name: tomcat8
+      state: present
+      
   - name: Copy application to webapps
     copy:
       src: /root/boxfuse/target/hello-1.0.war
