@@ -1,0 +1,5 @@
+---
+# defaults file for build
+
+dest_folder: /var/www/boxfuse/
+repo_boxfuse: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git

@@ -1,0 +1,14 @@
+---
+- name: build boxfuse
+  hosts: host1
+  become: yes
+  
+  roles:
+    - build
+
+- name: run boxfuse
+  hosts: host2
+  become: yes
+
+  roles:
+    - prod

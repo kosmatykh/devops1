@@ -1,0 +1,6 @@
+---
+# defaults file for prod
+
+app_folder: /var/www/boxfuse/target/hello-1.0.war
+tomcat_folder: /var/lib/tomcat8/webapps/
+host1: 35.238.215.95 

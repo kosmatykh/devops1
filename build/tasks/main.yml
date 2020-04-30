@@ -1,0 +1,15 @@
+---
+# tasks file for build
+
+- name: Ensure maven package is present
+  apt:
+    name={{ item }} state=present
+  with_items:
+    - maven
+
+- name: Clone git repo
+  git: repo={{ repo_boxfuse }} dest={{ dest_folder }} clone=yes
+
+- name: Build application
+  shell: cd {{ dest_folder }} ;  mvn package
+#  args: chdir={{ dest_folder }}
